@@ -11,6 +11,7 @@ using the Lemke-Howson algorithm.
 
 
 import sys
+from src import matrix
 
 
 def main():
@@ -37,6 +38,12 @@ def main():
 
         # Print both matrices and the result
         src.io.printGameInfo(m1, m2, eq, sys.stdout)
+        m1RowValues =row(m1,eq)
+        print(m1RowValues)
+        m1ColValues = col(m1,eq)
+        print(m1ColValues)
+        m2RowValues =row(m2,eq)
+        m2ColValues = col(m2,eq)
 
         return 0
     except SyntaxError:
@@ -44,6 +51,31 @@ def main():
     except Exception, e:
         sys.stderr.write('Error: ' + e.message + '\n')
         return 1
+
+def row(m1,eq) :
+    eqs = m1.getNumRows() * [0]
+    row = []
+    # Equilibrium is in the second column of the tableaux
+    for j in range(1, m1.getNumRows()) :
+        sum=0
+        for i in xrange(1, m1.getNumRows() + 1):
+           sum += m1.getItem(i, j)*eq[0][i-1]
+           
+        row.append(sum)
+
+    return row
+
+def col(m1,eq) :
+    eqs = m1.getNumRows() * [0]
+    col = []
+    # Equilibrium is in the second column of the tableaux
+    for j in range(1, m1.getNumRows()) :
+        sum=0
+        for i in xrange(1, m1.getNumRows() + 1):
+           sum += m1.getItem(j, i)*eq[1][i-1]
+        col.append(sum)
+    return col
+
 
 
 if __name__ == '__main__':
