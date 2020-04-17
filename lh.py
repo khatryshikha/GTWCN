@@ -42,8 +42,15 @@ def main():
         print(m1RowValues)
         m1ColValues = col(m1,eq)
         print(m1ColValues)
+        print("Game value for costumer 1")
+        print(intersection(m1ColValues,m1RowValues))
+        
         m2RowValues =row(m2,eq)
+        print(m2RowValues)
         m2ColValues = col(m2,eq)
+        print(m2ColValues)
+        print("Game value for costumer 2")
+        print(intersection(m2ColValues,m2RowValues))
 
         return 0
     except SyntaxError:
@@ -69,12 +76,19 @@ def col(m1,eq) :
     eqs = m1.getNumRows() * [0]
     col = []
     # Equilibrium is in the second column of the tableaux
-    for j in range(1, m1.getNumRows()) :
+    for j in range(1, m1.getNumRows()+1) :
         sum=0
         for i in xrange(1, m1.getNumRows() + 1):
            sum += m1.getItem(j, i)*eq[1][i-1]
         col.append(sum)
     return col
+
+def intersection(ColValues, RowValues):
+    for i in ColValues:
+        for j in RowValues:
+            if(i==j):
+                return i
+    return 0
 
 
 
