@@ -63,7 +63,7 @@ def row(m1,eq) :
     eqs = m1.getNumRows() * [0]
     row = []
     # Equilibrium is in the second column of the tableaux
-    for j in range(1, m1.getNumRows()) :
+    for j in range(1, m1.getNumRows()+1) :
         sum=0
         for i in xrange(1, m1.getNumRows() + 1):
            sum += m1.getItem(i, j)*eq[0][i-1]
