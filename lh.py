@@ -44,6 +44,7 @@ def main():
         print(m1ColValues)
         print("Game value for costumer 1")
         print(intersection(m1ColValues,m1RowValues))
+        
         m2RowValues =row(m2,eq)
         print(m2RowValues)
         m2ColValues = col(m2,eq)
@@ -88,6 +89,7 @@ def intersection(ColValues, RowValues):
             if(i==j):
                 return i
     return 0
+
 
 
 if __name__ == '__main__':
